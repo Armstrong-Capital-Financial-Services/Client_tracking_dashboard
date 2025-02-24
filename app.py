@@ -133,10 +133,6 @@ def main():
             else:
                st.error("⚠️ Download failed or timed out.")
 
-    finally:
-       driver.quit()
-
-
 
 if __name__ == "__main__":
     main()
