@@ -119,8 +119,7 @@ def main():
             if downloaded_file:
                 st.success(f"File downloaded successfully: {downloaded_file}")
                 df = pd.read_csv(downloaded_file)
-                if st.button("View Data"):
-                   st.dataframe(df,hide_index=True)
+                st.dataframe(df,hide_index=True)
 
                 # Provide a download link for the CSV file
                 with open(downloaded_file, "rb") as file:
