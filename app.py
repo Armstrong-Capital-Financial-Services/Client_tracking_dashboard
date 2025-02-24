@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -31,7 +32,7 @@ def create_driver():
     })
 
     return webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
+        service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
         options=options,
     ), temp_dir  # Return both driver and download directory
 
@@ -65,12 +66,6 @@ def login_and_navigate(driver):
 
         submit = driver.find_element(By.XPATH, "//input[@type='submit']")
         submit.click()
-
-        # Handle modal
-        button = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.CLASS_NAME, "NamingMigrationModal__modal-cta__2JGF9"))
-        )
-        button.click()
 
         # Navigate to Users tab
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Users")))
