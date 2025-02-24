@@ -121,19 +121,16 @@ def main():
                df = pd.read_csv(downloaded_file, sep=',', encoding='utf-8')
                st.session_state["downloaded_file"] = downloaded_file
                st.session_state["dataframe"] = df
-               option = st.radio("Choose an option:", ["View Data", "Download Data"])
-
-               if option == "View Data":
+            else:
+                pass
+            option = st.radio("Choose an option:", ["View Data"])
+            if option == "View Data":
                    # Use the DataFrame from the session state
                   st.dataframe(st.session_state["dataframe"])
-
-               elif option == "Download Data":
-                    with open(downloaded_file, "rb") as file:
+                  with open(downloaded_file, "rb") as file:
                         st.download_button( label="📥 Download CSV File", data=file, file_name="smallcase_users.csv", mime="text/csv" )
             else:
               st.error("⚠️ Download failed or timed out.")
-
-# Ensure the driver quits in the finally block
         finally:
           driver.quit()
 
