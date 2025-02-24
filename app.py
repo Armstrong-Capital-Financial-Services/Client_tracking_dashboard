@@ -112,7 +112,7 @@ def main():
     # Auto-refresh logic
     if time.time() - st.session_state.last_refresh > REFRESH_INTERVAL * 60:
         st.session_state.last_refresh = time.time()
-        st.experimental_rerun()
+        st.rerun()
 
     st.write("Click the button below to start the process.")
 
@@ -153,7 +153,7 @@ def main():
     # Display refresh timer
     st.write(f"🔄 Next refresh in {REFRESH_INTERVAL} minutes...")
     time.sleep(REFRESH_INTERVAL * 60)
-    st.experimental_rerun()  
+    st.rerun()  
 
 if __name__ == "__main__":
     main()
