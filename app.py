@@ -128,8 +128,9 @@ def main():
 
             if downloaded_file:
                 st.success(f"File downloaded successfully: {downloaded_file}")
-                df = pd.read_csv(downloaded_file)
-                st.dataframe(df)
+                if st.button("View Data"):
+                  df = pd.read_csv(downloaded_file)
+                  st.dataframe(df)
 
                 with open(downloaded_file, "rb") as file:
                     st.download_button(
