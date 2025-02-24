@@ -128,8 +128,6 @@ def main():
                   st.dataframe(st.session_state["dataframe"])
                   with open(downloaded_file, "rb") as file:
                         st.download_button( label="📥 Download CSV File", data=file, file_name="smallcase_users.csv", mime="text/csv" )
-            else:
-              st.error("⚠️ Download failed or timed out.")
         finally:
           driver.quit()
 
