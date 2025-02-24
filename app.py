@@ -25,7 +25,7 @@ def create_driver():
     temp_dir = tempfile.gettempdir()
 
     options.add_experimental_option("prefs", {
-        "download.default_directory": temp_dir,
+        "download.default_directory": '/tmp',
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
         "safebrowsing.enabled": True
@@ -108,10 +108,8 @@ def wait_for_download(temp_dir):
 
 
 def main():
-    st.title("Smallcase Users Data Downloader")
-    st.write("Click the button below to start the process.")
 
-    if st.button("Start Download"):
+    if st.button("Update Data"):
         driver, temp_dir = create_driver()
 
         try:
