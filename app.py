@@ -134,8 +134,8 @@ def main():
               st.error("⚠️ Download failed or timed out.")
 
 # Ensure the driver quits in the finally block
-    finally:
-       driver.quit()
+        finally:
+          driver.quit()
 
 if __name__ == "__main__":
     main()
