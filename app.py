@@ -119,7 +119,9 @@ def main():
             if downloaded_file:
                 st.success(f"File downloaded successfully: {downloaded_file}")
                 df = pd.read_csv(downloaded_file,sep=',',encoding='utf-8')
-                st.dataframe(df,hide_index=True)
+                df_reset = df.reset_index(drop=True)
+            
+                st.dataframe(df_reset)
 
                 # Provide a download link for the CSV file
                 with open(downloaded_file, "rb") as file:
