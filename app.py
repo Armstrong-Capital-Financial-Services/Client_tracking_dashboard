@@ -114,13 +114,15 @@ def wait_for_download(temp_dir):
 
 
 def main():
-    st.title("Smallcase Users Data Downloader")
-    st.write("Click the button below to start the process.")
+    st.set_page_config(layout="wide")
+    st.image('Armstrong_logo.png')
+    st.sidebar.title("Navigation")
+    page = st.sidebar.radio("Go to", ["Smallcase", "RIETS","Vested"])
+    if page == "Smallcase":
+      if st.button("Update Data"):
+         driver, temp_dir = create_driver()
 
-    if st.button("Start Download"):
-        driver, temp_dir = create_driver()
-
-        try:
+         try:
             login_and_navigate(driver)
             downloaded_file = wait_for_download(temp_dir)
 
@@ -129,7 +131,6 @@ def main():
                 df = pd.read_csv(downloaded_file)
                 st.dataframe(df)
 
-                # Provide a download link for the CSV file
                 with open(downloaded_file, "rb") as file:
                     st.download_button(
                         label="Download CSV File",
