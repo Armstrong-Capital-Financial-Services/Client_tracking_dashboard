@@ -123,8 +123,7 @@ def main():
                st.session_state["dataframe"] = df
             else:
                 pass
-            option = st.radio("Choose an option:", ["View Data"])
-            if option == "View Data":
+            with st.expander("View Data"):
                    # Use the DataFrame from the session state
                   st.dataframe(st.session_state["dataframe"])
                   with open(downloaded_file, "rb") as file:
