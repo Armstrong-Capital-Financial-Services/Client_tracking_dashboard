@@ -140,7 +140,7 @@ def main():
                     )
             else:
                 st.error("Download failed or timed out.")
-        finally:
+         finally:
             driver.quit()
 
 
