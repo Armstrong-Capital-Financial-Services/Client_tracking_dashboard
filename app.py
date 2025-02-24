@@ -5,6 +5,7 @@ import pandas as pd
 import streamlit as st
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -29,14 +30,14 @@ def create_driver():
     temp_dir = tempfile.gettempdir()
 
     options.add_experimental_option("prefs", {
-        "download.default_directory": temp_dir,
+        "download.default_directory": '/tmp',
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
         "safebrowsing.enabled": True
     })
 
     return webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
+        service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
         options=options,
     ), temp_dir
 
@@ -67,12 +68,6 @@ def login_and_navigate(driver):
         submit = driver.find_element(By.XPATH, "//input[@type='submit']")
         submit.click()
 
-        # Handle modal
-        button = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.CLASS_NAME, "NamingMigrationModal__modal-cta__2JGF9"))
-        )
-        button.click()
-
         # Navigate to Users tab
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Users")))
         other_tab = driver.find_element(By.LINK_TEXT, "Users")
@@ -81,8 +76,8 @@ def login_and_navigate(driver):
 
         # Download button
         d_button = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "PrivateSmallcaseUsers__download-SVG__3VuSB"))
-        )
+            EC.presence_of_element_located((By.CLASS_NAME, "PrivateSmallcaseUsers__download-SVG__3VuSB")))
+        
         d_button.click()
         time.sleep(3)
         d_button.click()
