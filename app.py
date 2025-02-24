@@ -131,8 +131,11 @@ def main():
                     with open(downloaded_file, "rb") as file:
                         st.download_button( label="📥 Download CSV File", data=file, file_name="smallcase_users.csv", mime="text/csv" )
             else:
-               st.error("⚠️ Download failed or timed out.")
+              st.error("⚠️ Download failed or timed out.")
 
+# Ensure the driver quits in the finally block
+    finally:
+       driver.quit()
 
 if __name__ == "__main__":
     main()
