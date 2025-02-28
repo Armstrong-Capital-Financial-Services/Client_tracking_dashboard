@@ -118,7 +118,7 @@ def main():
 
             if downloaded_file:
                st.success(f"File downloaded successfully: {downloaded_file}")
-               df = pd.read_csv(downloaded_file, sep=',', encoding='utf-8')
+               df = pd.read_csv(downloaded_file, sep=',', encoding='utf-8',index_col=None)
                st.session_state["downloaded_file"] = downloaded_file
                st.session_state["dataframe"] = df
             else:
