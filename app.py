@@ -123,10 +123,8 @@ def main():
                st.session_state["dataframe"] = df
             else:
                 pass
-            with st.expander("View Data"):
-                   # Use the DataFrame from the session state
-                  st.dataframe(st.session_state["dataframe"])
-                  with open(downloaded_file, "rb") as file:
+            
+            with open(downloaded_file, "rb") as file:
                         st.download_button( label="📥 Download CSV File", data=file, file_name="smallcase_users.csv", mime="text/csv" )
         finally:
           driver.quit()
